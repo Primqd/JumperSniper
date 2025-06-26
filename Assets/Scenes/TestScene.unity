@@ -169,8 +169,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 330585545}
-  xSens: 30
-  ySens: 30
+  xSens: 50
+  ySens: 50
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0

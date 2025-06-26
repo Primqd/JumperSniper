@@ -17,6 +17,10 @@ public class InputManager : MonoBehaviour
 
         // other type of actions: performed, started, and canceled
         onFoot.Jump.performed += ctx => motor.Jump(); // ctx = callback context, lambda function sorta
+
+        // lock cursor to center of screen
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void OnEnable()
