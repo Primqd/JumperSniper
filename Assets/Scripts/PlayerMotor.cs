@@ -7,6 +7,7 @@ public class PlayerMotor : MonoBehaviour
     private Vector3 playerVelocity;
     private bool isGrounded;
     public float acceleration = 1f;
+    public float friction = 0.1f;
     public float gravity = -9.8f;
     public float jumpHeight = 3f;
 
@@ -24,9 +25,15 @@ public class PlayerMotor : MonoBehaviour
     //recieve inputs from inputmanger and apply them to character controller
     public void ProcessMove(Vector2 input)
     {
+        // add 2d player input to velocity
         Vector3 accelDirection = transform.right * input.x + transform.forward * input.y; // transform local direction to world space- only for x and z
         playerVelocity.x += accelDirection.x * acceleration;
         playerVelocity.z += accelDirection.z * acceleration;
+
+        // apply friction
+        playerVelocity.x *= 1f - friction;
+        playerVelocity.z *= 1f - friction;
+
         playerVelocity.y += gravity * Time.deltaTime;
 
         // process gravity
