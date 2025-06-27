@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
@@ -23,18 +24,18 @@ public class PlayerMotor : MonoBehaviour
     //recieve inputs from inputmanger and apply them to character controller
     public void ProcessMove(Vector2 input)
     {
-        Vector3 moveDirection = Vector3.zero;
-        moveDirection.x = input.x;
-        moveDirection.z = input.y;
-        controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime);
-
+        playerVelocity.x = input.x * speed;
+        playerVelocity.z = input.y * speed;
         playerVelocity.y += gravity * Time.deltaTime;
+
         // process gravity
         if (isGrounded && playerVelocity.y < 0)
         {
             playerVelocity.y = -2f; // reset y velocity
         }
         controller.Move(playerVelocity * Time.deltaTime);
+
+        Debug.Log(playerVelocity);
     }
 
     public void Jump()
