@@ -24,8 +24,9 @@ public class PlayerMotor : MonoBehaviour
     //recieve inputs from inputmanger and apply them to character controller
     public void ProcessMove(Vector2 input)
     {
-        playerVelocity.x = input.x * speed;
-        playerVelocity.z = input.y * speed;
+        Vector3 moveDirection = transform.right * input.x + transform.forward * input.y; // transform local direction to world space- only for x and z
+        playerVelocity.x = moveDirection.x * speed;
+        playerVelocity.z = moveDirection.z * speed;
         playerVelocity.y += gravity * Time.deltaTime;
 
         // process gravity
