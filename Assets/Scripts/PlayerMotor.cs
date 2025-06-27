@@ -8,6 +8,7 @@ public class PlayerMotor : MonoBehaviour
     private bool isGrounded;
     public float acceleration = 1f;
     public float friction = 0.1f;
+    public float drag = 0.05f;
     public float gravity = -9.8f;
     public float jumpHeight = 3f;
 
@@ -30,9 +31,17 @@ public class PlayerMotor : MonoBehaviour
         playerVelocity.x += accelDirection.x * acceleration;
         playerVelocity.z += accelDirection.z * acceleration;
 
-        // apply friction
-        playerVelocity.x *= 1f - friction;
-        playerVelocity.z *= 1f - friction;
+        // apply friction or drag
+        if (isGrounded)
+        {
+            playerVelocity.x *= 1f - friction;
+            playerVelocity.z *= 1f - friction;
+        }
+        else
+        {
+            playerVelocity.x *= 1f - drag;
+            playerVelocity.z *= 1f - drag;
+        }
 
         playerVelocity.y += gravity * Time.deltaTime;
 
