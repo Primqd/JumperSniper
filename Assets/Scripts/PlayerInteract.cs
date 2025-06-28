@@ -6,6 +6,8 @@ public class PlayerInteract : MonoBehaviour
     private Camera playerCamera;
     [SerializeField] // make interactable in editor
     private float interactDistance = 3f;
+    [SerializeField]
+    private LayerMask mask;
 
 
     void Start()
@@ -17,6 +19,19 @@ public class PlayerInteract : MonoBehaviour
     {
         // ray from center of the camera forward
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
-        // Debug.DrawRay(ray.origin, ray.direction * interactDistance); // draw ray in scene editor
+
+        // store raycast interaction info
+        RaycastHit hitInfo;
+
+        // out = writes to hitInfo, returns boolean if it hits
+        if (Physics.Raycast(ray, out hitInfo, interactDistance, mask))
+        {
+            if (hitInfo.collider.GetComponent<Interactible>() != null) // has interactible component
+            {
+                Debug.Log(hitInfo.collider.GetComponent<Interactible>().promptMessage);
+            }
+        }
+
+        Debug.DrawRay(ray.origin, ray.direction * interactDistance); // draw ray in scene editor
     }
 }
