@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerMotor : MonoBehaviour
 {
     private CharacterController controller;
-    private Vector3 playerVelocity;
+    public Vector3 playerVelocity;
     private bool isGrounded;
     public float acceleration = 1f;
     public float staticFriction = 0.125f;
