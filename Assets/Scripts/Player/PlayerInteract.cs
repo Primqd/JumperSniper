@@ -1,3 +1,4 @@
+using UnityEditor.Rendering.Universal;
 using UnityEngine;
 
 // logic to detect and interact with interactible objects
@@ -9,12 +10,14 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField]
     private LayerMask mask;
     private PlayerUI playerUI;
+    private InputManager inputManager;
 
 
     void Start()
     {
         playerCamera = GetComponent<PlayerLook>().playerCamera; // get camera component from PlayerLook script
         playerUI = GetComponent<PlayerUI>();
+        inputManager = GetComponent<InputManager>();
     }
 
     void Update()
@@ -30,9 +33,14 @@ public class PlayerInteract : MonoBehaviour
         // out = writes to hitInfo, returns boolean if it hits
         if (Physics.Raycast(ray, out hitInfo, interactDistance, mask))
         {
-            if (hitInfo.collider.GetComponent<Interactible>() != null) // has interactible component
+            Interactible interactible = hitInfo.collider.GetComponent<Interactible>();
+            if (interactible != null) // has interactible component
             {
-                playerUI.UpdateText(hitInfo.collider.GetComponent<Interactible>().promptMessage);
+                playerUI.UpdateText(interactible.promptMessage);
+                if (inputManager.onFoot.Interact.triggered)
+                {
+                    interactible.BaseInteract(); // call interaction method of object
+                }
             }
         }
 

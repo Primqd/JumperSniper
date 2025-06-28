@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa0523b6265174409d9c0d6b9819969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  promptMessage: Use Keypad
+  promptMessage: use button
 --- !u!20 &330585545 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 2485790384289814003, guid: 22a1a7bfdc8a07445b86f15ddbbbc689, type: 3}
