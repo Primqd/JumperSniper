@@ -1,16 +1,13 @@
 using UnityEngine;
+using TMPro;
 
 public class PlayerUI : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private TextMeshProUGUI promptText;
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateText(string promptMessage)
     {
-        
+        promptText.text = promptMessage;
     }
 }

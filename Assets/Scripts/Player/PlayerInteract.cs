@@ -8,11 +8,13 @@ public class PlayerInteract : MonoBehaviour
     private float interactDistance = 3f;
     [SerializeField]
     private LayerMask mask;
+    private PlayerUI playerUI;
 
 
     void Start()
     {
         playerCamera = GetComponent<PlayerLook>().playerCamera; // get camera component from PlayerLook script
+        playerUI = GetComponent<PlayerUI>();
     }
 
     void Update()
@@ -23,12 +25,14 @@ public class PlayerInteract : MonoBehaviour
         // store raycast interaction info
         RaycastHit hitInfo;
 
+        playerUI.UpdateText(string.Empty); // reset ui text when not looking at anything
+
         // out = writes to hitInfo, returns boolean if it hits
         if (Physics.Raycast(ray, out hitInfo, interactDistance, mask))
         {
             if (hitInfo.collider.GetComponent<Interactible>() != null) // has interactible component
             {
-                Debug.Log(hitInfo.collider.GetComponent<Interactible>().promptMessage);
+                playerUI.UpdateText(hitInfo.collider.GetComponent<Interactible>().promptMessage);
             }
         }
 

@@ -528,6 +528,19 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &393544287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393544273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b72648d6ada5e2343a92985efa27a191, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  promptText: {fileID: 1731543987}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1986,6 +1999,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1834430395902930298, guid: 22a1a7bfdc8a07445b86f15ddbbbc689, type: 3}
       insertIndex: -1
       addedObject: {fileID: 393544282}
+    - targetCorrespondingSourceObject: {fileID: 1834430395902930298, guid: 22a1a7bfdc8a07445b86f15ddbbbc689, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 393544287}
   m_SourcePrefab: {fileID: 100100000, guid: 22a1a7bfdc8a07445b86f15ddbbbc689, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
