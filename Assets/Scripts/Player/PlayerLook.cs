@@ -16,7 +16,7 @@ public class PlayerLook : MonoBehaviour
         // calculate camera rot for looking up and down
         // xRot = rotation around x axis = pitch = up and down rotation, hence we use mouseY
         xRot -= mouseY * ySens * Time.deltaTime;
-        xRot = Mathf.Clamp(xRot, -80f, 80f);
+        xRot = Mathf.Clamp(xRot, -90f, 90f);
 
         // apply to camera transform
         playerCamera.transform.localRotation = Quaternion.Euler(xRot, 0, 0);
