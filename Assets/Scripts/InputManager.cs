@@ -7,6 +7,7 @@ public class InputManager : MonoBehaviour
 
     private PlayerMotor motor;
     private PlayerLook look;
+    private Gun gun;
 
     void Awake()
     {
@@ -14,9 +15,11 @@ public class InputManager : MonoBehaviour
         onFoot = playerInput.OnFoot;
         motor = GetComponent<PlayerMotor>();
         look = GetComponent<PlayerLook>();
+        gun = GetComponent<Gun>();
 
         // other type of actions: performed, started, and canceled
         onFoot.Jump.performed += ctx => motor.Jump(); // ctx = callback context, lambda function sorta
+        onFoot.Shoot.performed += ctx => gun.Shoot(); 
 
         // lock cursor to center of screen
         Cursor.lockState = CursorLockMode.Locked;

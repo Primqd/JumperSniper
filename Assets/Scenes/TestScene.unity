@@ -479,6 +479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f64294e9149db4c9487e21cab49c23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerVelocity: {x: 0, y: 0, z: 0}
   acceleration: 1
   staticFriction: 0.125
   kineticFriction: 0.1
@@ -541,6 +542,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptText: {fileID: 1731543987}
+--- !u!114 &393544292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393544273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8bbc7f6423b684498e173ad35eb3f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recoil: 50
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -2002,6 +2016,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1834430395902930298, guid: 22a1a7bfdc8a07445b86f15ddbbbc689, type: 3}
       insertIndex: -1
       addedObject: {fileID: 393544287}
+    - targetCorrespondingSourceObject: {fileID: 1834430395902930298, guid: 22a1a7bfdc8a07445b86f15ddbbbc689, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 393544292}
   m_SourcePrefab: {fileID: 100100000, guid: 22a1a7bfdc8a07445b86f15ddbbbc689, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
