@@ -25,6 +25,7 @@ public class PlayerMotor : MonoBehaviour
     }
 
     //recieve inputs from inputmanger and apply them to character controller
+    // TODO: adjust friction to be more lenient, also vertical drag
     public void ProcessMove(Vector2 input)
     {
         // add 2d player input to velocity
