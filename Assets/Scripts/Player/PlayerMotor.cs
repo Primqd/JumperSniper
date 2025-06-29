@@ -7,10 +7,7 @@ public class PlayerMotor : MonoBehaviour
     private Vector3 playerVelocity;
     public Vector3 externalVelocity;
     private bool isGrounded;
-    public float acceleration = 1f;
-    public float staticFriction = 0.125f;
-    public float kineticFriction = 0.1f;
-    public float drag = 0.09f;
+    public float speed = 1f;
     public float gravity = -9.8f;
     public float jumpHeight = 3f;
 
@@ -29,35 +26,12 @@ public class PlayerMotor : MonoBehaviour
     // TODO: adjust friction to be more lenient, also vertical drag
     public void ProcessMove(Vector2 input)
     {
-        // add 2d player input to velocity
-        Vector3 accelDirection = transform.right * input.x + transform.forward * input.y; // transform local direction to world space- only for x and z
-        playerVelocity.x += accelDirection.x * acceleration;
-        playerVelocity.z += accelDirection.z * acceleration;
-
-        // apply friction or drag
-        if (isGrounded)
-        {
-            if (input == Vector2.zero) // not moving
-            {
-                playerVelocity.x *= 1f - staticFriction;
-                playerVelocity.z *= 1f - staticFriction;
-            }
-            else // moving
-            {
-                playerVelocity.x *= 1f - kineticFriction;
-                playerVelocity.z *= 1f - kineticFriction;
-            }
-        }
-        else
-        {
-            playerVelocity.x *= 1f - drag;
-            playerVelocity.z *= 1f - drag;
-            if (playerVelocity.y > 10) { playerVelocity.y *= 1f - drag; }
-        }
-
-        playerVelocity.y += gravity * Time.deltaTime;
+        // set player velocity to input velocity
+        Vector3 moveDirection = transform.right * input.x + transform.forward * input.y; // transform local direction to world space- only for x and z
+        playerVelocity.x = moveDirection.x * speed; playerVelocity.z = moveDirection.z * speed;
 
         // process gravity
+        playerVelocity.y += gravity * Time.deltaTime;
         if (isGrounded && playerVelocity.y < 0)
         {
             playerVelocity.y = -2f; // reset y velocity
