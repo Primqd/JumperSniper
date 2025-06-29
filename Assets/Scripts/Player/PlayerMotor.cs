@@ -4,7 +4,8 @@ using UnityEngine;
 public class PlayerMotor : MonoBehaviour
 {
     private CharacterController controller;
-    public Vector3 playerVelocity;
+    private Vector3 playerVelocity;
+    public Vector3 externalVelocity;
     private bool isGrounded;
     public float acceleration = 1f;
     public float staticFriction = 0.125f;
@@ -51,7 +52,7 @@ public class PlayerMotor : MonoBehaviour
         {
             playerVelocity.x *= 1f - drag;
             playerVelocity.z *= 1f - drag;
-            if(playerVelocity.y > 10) { playerVelocity.y *= 1f - drag; }
+            if (playerVelocity.y > 10) { playerVelocity.y *= 1f - drag; }
         }
 
         playerVelocity.y += gravity * Time.deltaTime;
@@ -62,6 +63,7 @@ public class PlayerMotor : MonoBehaviour
             playerVelocity.y = -2f; // reset y velocity
         }
         controller.Move(playerVelocity * Time.deltaTime);
+        controller.Move(externalVelocity * Time.deltaTime);
 
         // Debug.Log(playerVelocity);
     }
