@@ -47,6 +47,11 @@ public class PlayerMotor : MonoBehaviour
         {
             // v_i = sqrt(2gh) from kinematic
             playerVelocity.y = Mathf.Sqrt(-2f * jumpHeight * gravity);
+
+            // transfer playerVelocity x and z components to externalVelocity
+            externalVelocity.x += playerVelocity.x; playerVelocity.x = 0;
+            externalVelocity.z += playerVelocity.z; playerVelocity.z = 0;
+
         }
     }
 
