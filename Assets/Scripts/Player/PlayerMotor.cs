@@ -10,6 +10,7 @@ public class PlayerMotor : MonoBehaviour
     public float speed = 1f;
     public float gravity = -9.8f;
     public float jumpHeight = 3f;
+    public float externalFriction = 0.05f;
 
     void Start()
     {
@@ -23,17 +24,18 @@ public class PlayerMotor : MonoBehaviour
     }
 
     //recieve inputs from inputmanger and apply them to character controller
-    // TODO: adjust friction to be more lenient, also vertical drag
     public void ProcessMove(Vector2 input)
     {
         // set player velocity to input velocity
         Vector3 moveDirection = transform.right * input.x + transform.forward * input.y; // transform local direction to world space- only for x and z
         playerVelocity.x = moveDirection.x * speed; playerVelocity.z = moveDirection.z * speed;
 
-        // reset external velocity if grounded
+        // add friction to external vleocity when grounded
         if (isGrounded)
         {
-            externalVelocity = Vector3.zero;
+            externalVelocity.y = 0;
+            externalVelocity.x *= 1f - externalFriction;
+            externalVelocity.z *= 1f - externalFriction;
         }
 
         // process gravity
