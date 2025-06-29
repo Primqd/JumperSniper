@@ -30,6 +30,12 @@ public class PlayerMotor : MonoBehaviour
         Vector3 moveDirection = transform.right * input.x + transform.forward * input.y; // transform local direction to world space- only for x and z
         playerVelocity.x = moveDirection.x * speed; playerVelocity.z = moveDirection.z * speed;
 
+        // reset external velocity if grounded
+        if (isGrounded)
+        {
+            externalVelocity = Vector3.zero;
+        }
+
         // process gravity
         playerVelocity.y += gravity * Time.deltaTime;
         if (isGrounded && playerVelocity.y < 0)

@@ -479,11 +479,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f64294e9149db4c9487e21cab49c23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerVelocity: {x: 0, y: 0, z: 0}
-  acceleration: 1
-  staticFriction: 0.125
-  kineticFriction: 0.1
-  drag: 0.09
+  externalVelocity: {x: 0, y: 0, z: 0}
+  speed: 10
   gravity: -9.8
   jumpHeight: 3
 --- !u!114 &393544279
