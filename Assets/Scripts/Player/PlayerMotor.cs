@@ -51,6 +51,7 @@ public class PlayerMotor : MonoBehaviour
         {
             playerVelocity.x *= 1f - drag;
             playerVelocity.z *= 1f - drag;
+            if(playerVelocity.y > 10) { playerVelocity.y *= 1f - drag; }
         }
 
         playerVelocity.y += gravity * Time.deltaTime;
