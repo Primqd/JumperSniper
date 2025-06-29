@@ -36,8 +36,7 @@ public class PlayerMotor : MonoBehaviour
         {
             playerVelocity.y = -2f; // reset y velocity
         }
-        controller.Move(playerVelocity * Time.deltaTime);
-        controller.Move(externalVelocity * Time.deltaTime);
+        controller.Move(playerVelocity * Time.deltaTime + externalVelocity * Time.deltaTime);
 
         // Debug.Log(playerVelocity);
     }
