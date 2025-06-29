@@ -1,11 +1,13 @@
 using System;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerMotor : MonoBehaviour
 {
     private CharacterController controller;
     private Vector3 playerVelocity;
-    public Vector3 externalVelocity;
+    [HideInDebugUI]
+    public Vector3 airVelocity;
     private bool isGrounded;
     public float speed = 1f;
     public float gravity = -9.8f;
@@ -33,9 +35,9 @@ public class PlayerMotor : MonoBehaviour
         // add friction to external vleocity when grounded
         if (isGrounded)
         {
-            externalVelocity.y = 0;
-            externalVelocity.x *= 1f - externalFriction;
-            externalVelocity.z *= 1f - externalFriction;
+            airVelocity.y = 0;
+            airVelocity.x *= 1f - externalFriction;
+            airVelocity.z *= 1f - externalFriction;
         }
 
         // process gravity
@@ -44,7 +46,7 @@ public class PlayerMotor : MonoBehaviour
         {
             playerVelocity.y = -2f; // reset y velocity
         }
-        controller.Move(playerVelocity * Time.deltaTime + externalVelocity * Time.deltaTime);
+        controller.Move(playerVelocity * Time.deltaTime + airVelocity * Time.deltaTime);
 
         // Debug.Log(playerVelocity);
     }
@@ -57,8 +59,8 @@ public class PlayerMotor : MonoBehaviour
             playerVelocity.y = Mathf.Sqrt(-2f * jumpHeight * gravity);
 
             // transfer playerVelocity x and z components to externalVelocity
-            externalVelocity.x += playerVelocity.x; playerVelocity.x = 0;
-            externalVelocity.z += playerVelocity.z; playerVelocity.z = 0;
+            airVelocity.x += playerVelocity.x; playerVelocity.x = 0;
+            airVelocity.z += playerVelocity.z; playerVelocity.z = 0;
 
         }
     }

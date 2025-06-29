@@ -15,6 +15,6 @@ public class Gun : MonoBehaviour
     public void Shoot()
     {
         Vector3 recoilVelocity = playerCamera.transform.forward * -recoil;
-        playerMotor.externalVelocity += recoilVelocity;
+        playerMotor.airVelocity += recoilVelocity;
     }
 }
